@@ -81,4 +81,3 @@ Open `rag.ipynb` in Jupyter Notebook or VS Code to interact with the full pipeli
 Feel free to open issues or submit pull requests for improvements!
 
 ---
-*Generated with ❤️ by Antigravity*
