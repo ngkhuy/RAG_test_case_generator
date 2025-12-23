@@ -5,6 +5,7 @@ from tqdm import tqdm
 # Define list heading in requirements
 SECTION_HEADERS = [
     "Narrative",
+    "Scope",
     "In Scope",
     "Out of Scope",
     "Acceptance Criteria",
@@ -40,7 +41,7 @@ def split_requirements(req_text: str):
     return sections
 
 def chunking_document(requirement_text: str, max_chunk_size: int = 800):
-    """Chunk requirement document into hierarchical chunks (1-pass)."""
+    """Chunk requirement document into hierarchical chunks"""
     chunks = []
 
     # Extract epic level
@@ -91,24 +92,27 @@ def chunking_document(requirement_text: str, max_chunk_size: int = 800):
         sections = split_requirements(req_block)
 
         for header, parent, content in sections:
-
             # Build metadata including optional parent_section
             metadata = {**base_metadata, "section": header}
             if parent:
                 metadata["parent_section"] = parent
 
-            # Short enough → 1 chunk
+            # Skip empty sections
+            if not content.strip():
+                continue
+
+            # Short enough -> 1 chunk
             if len(content) <= max_chunk_size:
                 chunks.append({
-                    "text": f"{header}\n{content.strip()}",
+                    "text": f"{content.strip()}",
                     "metadata": metadata
                 })
             else:
-                # Too long → chunk using LangChain
+                # Too long -> chunk using LangChain
                 parts = splitter.split_text(content)
                 for p in parts:
                     chunks.append({
-                        "text": f"{header}\n{p}",
+                        "text": f"{p}",
                         "metadata": metadata
                     })
 

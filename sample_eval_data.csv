@@ -1,0 +1,40 @@
+query,retrieved_context,reference_answer
+"Gerate test cases for register new user using email and password","Requirement ID: PSE1.1
+Section: Narrative
+Content: As a new user
+I want to register using my email and a password
+So that I can create an account and access the ProShop application.
+
+Requirement ID: PSE1.1
+Section: In Scope
+Content: A registration form
+Input validation
+Validate email format and password security
+Successful registration handling
+
+Requirement ID: PSE1.1
+Section: Out of Scope
+Content: Email verification
+The app will not send a verification email to confirm the user’s email address
+
+Requirement ID: PSE1.1
+Section: Acceptance Criteria
+Content: Scenario PSE1.1-S1: Successful Registration
+Scenario PSE1.1-S2: Email Format Validation
+Scenario PSE1.1-S3: Password Validation
+Scenario PSE1.1-S4: Duplicate Email Check
+
+Requirement ID: PSE1.1
+Section: Priority
+Content: MUST
+
+Requirement ID: PSE1.1
+Section: Business Rules
+Content: BR1: Email Validation
+BR2: Password Validation
+
+Requirement ID: PSE1.1
+Section: Additional Comments
+Content: The registration form should include 2 fields:
+Email
+Password","{""test_cases"":[{""test_case_id"":""TC_PSE1.1_REF_01"",""requirement_id"":""PSE1.1"",""scenario_id"":""PSE1.1-S1"",""title"":""Successful user registration with valid email and password"",""preconditions"":[""User is on the registration page""],""steps"":[""Enter a valid email address in the Email field"",""Enter a password that meets defined security rules"",""Submit the registration form""],""test_data"":{""email"":""valid.user@proshop.com"",""password"":""StrongPass#123""},""expected_result"":""The system creates a new user account and allows access to the application."",""priority"":""High"",""is_automated"":true},{""test_case_id"":""TC_PSE1.1_REF_02"",""requirement_id"":""PSE1.1"",""scenario_id"":""PSE1.1-S2"",""title"":""Reject registration when email format is invalid"",""preconditions"":[""User is on the registration page""],""steps"":[""Enter an invalid email address format"",""Enter a valid password"",""Submit the registration form""],""test_data"":{""email"":""invalid-email-format"",""password"":""StrongPass#123""},""expected_result"":""The system blocks registration and displays an invalid email format validation message."",""priority"":""High"",""is_automated"":true},{""test_case_id"":""TC_PSE1.1_REF_03"",""requirement_id"":""PSE1.1"",""scenario_id"":""PSE1.1-S3"",""title"":""Reject registration when password does not meet security requirements"",""preconditions"":[""User is on the registration page""],""steps"":[""Enter a valid email address"",""Enter a weak or non-compliant password"",""Submit the registration form""],""test_data"":{""email"":""user2@proshop.com"",""password"":""12345""},""expected_result"":""The system blocks registration and displays a password validation error message."",""priority"":""High"",""is_automated"":true},{""test_case_id"":""TC_PSE1.1_REF_04"",""requirement_id"":""PSE1.1"",""scenario_id"":""PSE1.1-S4"",""title"":""Reject registration when email is already registered"",""preconditions"":[""User is on the registration page"",""An account already exists with the entered email address""],""steps"":[""Enter an email address that is already registered"",""Enter a valid password"",""Submit the registration form""],""test_data"":{""email"":""existing@proshop.com"",""password"":""StrongPass#123""},""expected_result"":""The system blocks registration and displays a duplicate email error message."",""priority"":""High"",""is_automated"":true}]}"
